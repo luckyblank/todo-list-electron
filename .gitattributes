@@ -1,0 +1,9 @@
+# Normalize source files while preserving binary application assets.
+* text=auto eol=lf
+*.png binary
+*.ico binary
+*.ttf binary
+*.woff2 binary
+
+# Keep upstream license text verbatim, including its original trailing spaces.
+**/NotoSansSC-OFL.txt -whitespace

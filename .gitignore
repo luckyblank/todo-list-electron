@@ -1,0 +1,46 @@
+# Dependencies and generated application/installer outputs
+/node_modules/
+/out/
+/dist/
+/target/
+*.zip
+*.7z
+*.exe
+*.msi
+*.blockmap
+
+# Generated test reports; source tests and documentation screenshots are tracked
+/coverage/
+/test-results/
+/playwright-report/
+/docs/verification/
+
+# Local application data and SQLite files
+/.dev-data/
+/.test-data/
+/data/
+/backups/
+/recovery/
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
+*.log
+*.tsbuildinfo
+
+# Local credentials and signing material
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Editor and operating-system metadata
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,59 @@
+{
+  "name": "todo-list-desktop",
+  "version": "1.0.0",
+  "description": "专注日常任务的离线桌面工作台",
+  "author": "To-Do List Contributors",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "main": "out/main/index.js",
+  "engines": { "node": ">=22.12.0" },
+  "scripts": {
+    "dev": "electron-vite dev",
+    "start": "electron-vite preview",
+    "typecheck": "tsc --noEmit -p tsconfig.node.json && vue-tsc --noEmit -p tsconfig.web.json",
+    "lint": "eslint src tests scripts electron.vite.config.ts vitest.config.ts",
+    "test": "node scripts/run-tests.mjs run",
+    "test:watch": "node scripts/run-tests.mjs",
+    "test:electron": "npm run build && node scripts/run-electron-smoke.mjs",
+    "build": "npm run typecheck && electron-vite build",
+    "icons": "node scripts/generate-icons.mjs",
+    "package:win": "npm run build && electron-builder --win --x64",
+    "verify:package": "node scripts/verify-package.mjs",
+    "postinstall": "node scripts/verify-native.mjs"
+  },
+  "dependencies": {
+    "better-sqlite3": "13.0.3",
+    "@lucide/vue": "1.62.0",
+    "pinia": "4.1.0",
+    "vue": "3.5.44"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/better-sqlite3": "9.6.0",
+    "@types/node": "24.13.2",
+    "@vitejs/plugin-vue": "6.0.10",
+    "electron": "45.0.0",
+    "electron-builder": "26.18.0",
+    "electron-vite": "6.0.0",
+    "eslint": "10.13.0",
+    "eslint-plugin-vue": "10.12.0",
+    "globals": "17.13.0",
+    "sharp": "0.35.5",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.72.1",
+    "vite": "8.3.5",
+    "vitest": "5.0.5",
+    "vue-tsc": "3.3.13"
+  },
+  "build": {
+    "appId": "com.todo-list.desktop",
+    "productName": "To-Do List",
+    "directories": { "buildResources": "resources", "output": "dist" },
+    "files": ["out/**/*", "resources/app-icon.png", "resources/licenses/**/*", "package.json"],
+    "asarUnpack": ["**/*.node"],
+    "npmRebuild": false,
+    "win": { "target": ["nsis"], "icon": "resources/app-icon.ico", "artifactName": "Todo-List-${version}-${arch}-Setup.${ext}" },
+    "nsis": { "oneClick": false, "allowToChangeInstallationDirectory": true, "createDesktopShortcut": true, "deleteAppDataOnUninstall": false, "installerIcon": "resources/app-icon.ico", "uninstallerIcon": "resources/app-icon.ico", "installerHeaderIcon": "resources/app-icon.ico" }
+  }
+}
